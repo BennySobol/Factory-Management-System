@@ -1,0 +1,764 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="dbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="customersTBL">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="firstName" Type="nvarchar" MaxLength="25" Nullable="false" />
+          <Property Name="lastName" Type="nvarchar" MaxLength="25" />
+          <Property Name="fullName" Type="nvarchar" MaxLength="51" StoreGeneratedPattern="Computed" />
+          <Property Name="address" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="phone" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="mail" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="notes" Type="nvarchar" MaxLength="1000" />
+        </EntityType>
+        <EntityType Name="empTBL">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="firstName" Type="nvarchar" MaxLength="25" Nullable="false" />
+          <Property Name="lastName" Type="nvarchar" MaxLength="25" Nullable="false" />
+          <Property Name="fullName" Type="nvarchar" MaxLength="51" StoreGeneratedPattern="Computed" Nullable="false" />
+          <Property Name="bDate" Type="date" Nullable="false" />
+          <Property Name="startDate" Type="date" Nullable="false" />
+          <Property Name="endDate" Type="date" />
+          <Property Name="address" Type="nvarchar" MaxLength="50" />
+          <Property Name="phone" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="isActive" Type="bit" Nullable="false" />
+          <Property Name="img" Type="image" />
+          <Property Name="email" Type="nvarchar" MaxLength="50" />
+          <Property Name="gender" Type="bit" Nullable="false" />
+          <Property Name="leaveReason" Type="nvarchar" MaxLength="500" />
+          <Property Name="nots" Type="nvarchar" MaxLength="1000" />
+          <Property Name="roleID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="orderTBL">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="currentOrderPrice" Type="float" Nullable="false" />
+          <Property Name="orderDeadline" Type="datetime" Nullable="false" />
+          <Property Name="orderToken" Type="int" Nullable="false" />
+          <Property Name="isDiliverd" Type="bit" Nullable="false" />
+          <Property Name="productsID" Type="int" Nullable="false" />
+          <Property Name="customerID" Type="int" Nullable="false" />
+          <Property Name="orderStartDate" Type="datetime" Nullable="false" />
+          <Property Name="amount" Type="int" Nullable="false" />
+          <Property Name="allOrderCost" Type="float" />
+          <Property Name="orderSendDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="productCategoryTBL">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="categoryName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="description" Type="nvarchar" MaxLength="1000" />
+          <Property Name="isActive" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="productTBL">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="productName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="nots" Type="nvarchar" MaxLength="1000" />
+          <Property Name="addDate" Type="date" Nullable="false" />
+          <Property Name="isActive" Type="bit" Nullable="false" />
+          <Property Name="categoryID" Type="int" Nullable="false" />
+          <Property Name="img" Type="image" />
+          <Property Name="unitsInStock" Type="int" Nullable="false" />
+          <Property Name="productPrice" Type="float" Nullable="false" />
+        </EntityType>
+        <EntityType Name="roleTBL">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="roleName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="description" Type="nvarchar" MaxLength="500" />
+          <Property Name="isActive" Type="bit" Nullable="false" />
+          <Property Name="HourSalary" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="suppliersTBL">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="firstName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="lastName" Type="nvarchar" MaxLength="50" />
+          <Property Name="fullName" Type="nvarchar" MaxLength="101" StoreGeneratedPattern="Computed" />
+          <Property Name="address" Type="nvarchar" MaxLength="50" />
+          <Property Name="phone" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="mail" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="notes" Type="nvarchar" MaxLength="500" />
+        </EntityType>
+        <EntityType Name="workHoursTBL">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="startDate" Type="datetime" Nullable="false" />
+          <Property Name="endDate" Type="datetime" Nullable="false" />
+          <Property Name="workerID" Type="int" Nullable="false" />
+          <Property Name="currentHourSalary" Type="int" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view '..dbo.empView' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="empView">
+          <Key>
+            <PropertyRef Name="fullName" />
+            <PropertyRef Name="phone" />
+            <PropertyRef Name="bDate" />
+            <PropertyRef Name="startDate" />
+            <PropertyRef Name="roleName" />
+            <PropertyRef Name="isActive" />
+          </Key>
+          <Property Name="fullName" Type="nvarchar" MaxLength="51" Nullable="false" />
+          <Property Name="email" Type="nvarchar" MaxLength="50" />
+          <Property Name="phone" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="bDate" Type="date" Nullable="false" />
+          <Property Name="startDate" Type="date" Nullable="false" />
+          <Property Name="roleName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="nots" Type="nvarchar" MaxLength="1000" />
+          <Property Name="img" Type="image" />
+          <Property Name="isActive" Type="bit" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view '..dbo.orderView' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="orderView">
+          <Key>
+            <PropertyRef Name="productName" />
+            <PropertyRef Name="productPrice" />
+            <PropertyRef Name="currentOrderPrice" />
+            <PropertyRef Name="amount" />
+            <PropertyRef Name="orderStartDate" />
+            <PropertyRef Name="orderDeadline" />
+            <PropertyRef Name="orderToken" />
+            <PropertyRef Name="productID" />
+          </Key>
+          <Property Name="fullName" Type="nvarchar" MaxLength="51" />
+          <Property Name="productName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="productPrice" Type="float" Nullable="false" />
+          <Property Name="currentOrderPrice" Type="float" Nullable="false" />
+          <Property Name="amount" Type="int" Nullable="false" />
+          <Property Name="orderStartDate" Type="datetime" Nullable="false" />
+          <Property Name="orderDeadline" Type="datetime" Nullable="false" />
+          <Property Name="orderToken" Type="int" Nullable="false" />
+          <Property Name="productID" Type="int" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view '..dbo.productView' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="productView">
+          <Key>
+            <PropertyRef Name="productName" />
+            <PropertyRef Name="categoryName" />
+            <PropertyRef Name="productPrice" />
+            <PropertyRef Name="unitsInStock" />
+            <PropertyRef Name="isActive" />
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="productName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="categoryName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="nots" Type="nvarchar" MaxLength="1000" />
+          <Property Name="productPrice" Type="float" Nullable="false" />
+          <Property Name="unitsInStock" Type="int" Nullable="false" />
+          <Property Name="img" Type="image" />
+          <Property Name="isActive" Type="bit" Nullable="false" />
+          <Property Name="Id" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_empTBL_productCategoryTBL">
+          <End Role="productCategoryTBL" Type="Self.productCategoryTBL" Multiplicity="1" />
+          <End Role="productTBL" Type="Self.productTBL" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="productCategoryTBL">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="productTBL">
+              <PropertyRef Name="categoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_empTBL_roleTBL">
+          <End Role="roleTBL" Type="Self.roleTBL" Multiplicity="1" />
+          <End Role="empTBL" Type="Self.empTBL" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="roleTBL">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="empTBL">
+              <PropertyRef Name="roleID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_orderTBL_customersTBL">
+          <End Role="customersTBL" Type="Self.customersTBL" Multiplicity="1" />
+          <End Role="orderTBL" Type="Self.orderTBL" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="customersTBL">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="orderTBL">
+              <PropertyRef Name="customerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_orderTBL_empTABLE">
+          <End Role="empTBL" Type="Self.empTBL" Multiplicity="1" />
+          <End Role="workHoursTBL" Type="Self.workHoursTBL" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="empTBL">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="workHoursTBL">
+              <PropertyRef Name="workerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_orderTBL_productTBL">
+          <End Role="productTBL" Type="Self.productTBL" Multiplicity="1" />
+          <End Role="orderTBL" Type="Self.orderTBL" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="productTBL">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="orderTBL">
+              <PropertyRef Name="productsID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="dbModelStoreContainer">
+          <EntitySet Name="customersTBL" EntityType="Self.customersTBL" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="empTBL" EntityType="Self.empTBL" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="orderTBL" EntityType="Self.orderTBL" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="productCategoryTBL" EntityType="Self.productCategoryTBL" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="productTBL" EntityType="Self.productTBL" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="roleTBL" EntityType="Self.roleTBL" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="suppliersTBL" EntityType="Self.suppliersTBL" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="workHoursTBL" EntityType="Self.workHoursTBL" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="empView" EntityType="Self.empView" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [empView].[fullName] AS [fullName], 
+    [empView].[email] AS [email], 
+    [empView].[phone] AS [phone], 
+    [empView].[bDate] AS [bDate], 
+    [empView].[startDate] AS [startDate], 
+    [empView].[roleName] AS [roleName], 
+    [empView].[nots] AS [nots], 
+    [empView].[img] AS [img], 
+    [empView].[isActive] AS [isActive]
+    FROM [dbo].[empView] AS [empView]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="orderView" EntityType="Self.orderView" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [orderView].[fullName] AS [fullName], 
+    [orderView].[productName] AS [productName], 
+    [orderView].[productPrice] AS [productPrice], 
+    [orderView].[currentOrderPrice] AS [currentOrderPrice], 
+    [orderView].[amount] AS [amount], 
+    [orderView].[orderStartDate] AS [orderStartDate], 
+    [orderView].[orderDeadline] AS [orderDeadline], 
+    [orderView].[orderToken] AS [orderToken], 
+    [orderView].[productID] AS [productID]
+    FROM [dbo].[orderView] AS [orderView]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="productView" EntityType="Self.productView" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [productView].[productName] AS [productName], 
+    [productView].[categoryName] AS [categoryName], 
+    [productView].[nots] AS [nots], 
+    [productView].[productPrice] AS [productPrice], 
+    [productView].[unitsInStock] AS [unitsInStock], 
+    [productView].[img] AS [img], 
+    [productView].[isActive] AS [isActive], 
+    [productView].[Id] AS [Id]
+    FROM [dbo].[productView] AS [productView]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK_empTBL_productCategoryTBL" Association="Self.FK_empTBL_productCategoryTBL">
+            <End Role="productCategoryTBL" EntitySet="productCategoryTBL" />
+            <End Role="productTBL" EntitySet="productTBL" />
+          </AssociationSet>
+          <AssociationSet Name="FK_empTBL_roleTBL" Association="Self.FK_empTBL_roleTBL">
+            <End Role="roleTBL" EntitySet="roleTBL" />
+            <End Role="empTBL" EntitySet="empTBL" />
+          </AssociationSet>
+          <AssociationSet Name="FK_orderTBL_customersTBL" Association="Self.FK_orderTBL_customersTBL">
+            <End Role="customersTBL" EntitySet="customersTBL" />
+            <End Role="orderTBL" EntitySet="orderTBL" />
+          </AssociationSet>
+          <AssociationSet Name="FK_orderTBL_empTABLE" Association="Self.FK_orderTBL_empTABLE">
+            <End Role="empTBL" EntitySet="empTBL" />
+            <End Role="workHoursTBL" EntitySet="workHoursTBL" />
+          </AssociationSet>
+          <AssociationSet Name="FK_orderTBL_productTBL" Association="Self.FK_orderTBL_productTBL">
+            <End Role="productTBL" EntitySet="productTBL" />
+            <End Role="orderTBL" EntitySet="orderTBL" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="dbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="customersTBL">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="firstName" Type="String" MaxLength="25" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="lastName" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+          <Property Name="fullName" Type="String" MaxLength="51" FixedLength="false" Unicode="true" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="address" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="phone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="mail" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="notes" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="orderTBL" Relationship="dbModel.FK_orderTBL_customersTBL" FromRole="customersTBL" ToRole="orderTBL" />
+        </EntityType>
+        <EntityType Name="productCategoryTBL">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="categoryName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="description" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="isActive" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="productTBL" Relationship="Self.FK_empTBL_productCategoryTBL" FromRole="productCategoryTBL" ToRole="productTBL" />
+        </EntityType>
+        <EntityType Name="productTBL">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="productName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="nots" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="addDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="isActive" Type="Boolean" Nullable="false" />
+          <Property Name="categoryID" Type="Int32" Nullable="false" />
+          <Property Name="img" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="unitsInStock" Type="Int32" Nullable="false" />
+          <Property Name="productPrice" Type="Double" Nullable="false" />
+          <NavigationProperty Name="productCategoryTBL" Relationship="Self.FK_empTBL_productCategoryTBL" FromRole="productTBL" ToRole="productCategoryTBL" />
+          <NavigationProperty Name="orderTBL" Relationship="dbModel.FK_orderTBL_productTBL" FromRole="productTBL" ToRole="orderTBL" />
+        </EntityType>
+        <EntityType Name="suppliersTBL">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="firstName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="lastName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="fullName" Type="String" MaxLength="101" FixedLength="false" Unicode="true" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="address" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="phone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="mail" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="notes" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="productView">
+          <Key>
+            <PropertyRef Name="productName" />
+            <PropertyRef Name="categoryName" />
+            <PropertyRef Name="productPrice" />
+            <PropertyRef Name="unitsInStock" />
+            <PropertyRef Name="isActive" />
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="productName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="categoryName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="nots" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="productPrice" Type="Double" Nullable="false" />
+          <Property Name="unitsInStock" Type="Int32" Nullable="false" />
+          <Property Name="img" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="isActive" Type="Boolean" Nullable="false" />
+          <Property Name="Id" Type="Int32" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_empTBL_productCategoryTBL">
+          <End Role="productCategoryTBL" Type="Self.productCategoryTBL" Multiplicity="1" />
+          <End Role="productTBL" Type="Self.productTBL" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="productCategoryTBL">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="productTBL">
+              <PropertyRef Name="categoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="dbEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="customersTBL" EntityType="Self.customersTBL" />
+          <EntitySet Name="productCategoryTBL" EntityType="Self.productCategoryTBL" />
+          <EntitySet Name="productTBL" EntityType="Self.productTBL" />
+          <EntitySet Name="suppliersTBL" EntityType="Self.suppliersTBL" />
+          <EntitySet Name="productView" EntityType="Self.productView" />
+          <AssociationSet Name="FK_empTBL_productCategoryTBL" Association="Self.FK_empTBL_productCategoryTBL">
+            <End Role="productCategoryTBL" EntitySet="productCategoryTBL" />
+            <End Role="productTBL" EntitySet="productTBL" />
+          </AssociationSet>
+          <EntitySet Name="empTBL" EntityType="dbModel.empTBL" />
+          <EntitySet Name="empView" EntityType="dbModel.empView" />
+          <EntitySet Name="roleTBL" EntityType="dbModel.roleTBL" />
+          <EntitySet Name="workHoursTBL" EntityType="dbModel.workHoursTBL" />
+          <AssociationSet Name="FK_empTBL_roleTBL" Association="dbModel.FK_empTBL_roleTBL">
+            <End Role="roleTBL" EntitySet="roleTBL" />
+            <End Role="empTBL" EntitySet="empTBL" />
+          </AssociationSet>
+          <AssociationSet Name="FK_orderTBL_empTABLE" Association="dbModel.FK_orderTBL_empTABLE">
+            <End Role="empTBL" EntitySet="empTBL" />
+            <End Role="workHoursTBL" EntitySet="workHoursTBL" />
+          </AssociationSet>
+          <EntitySet Name="orderTBL" EntityType="dbModel.orderTBL" />
+          <EntitySet Name="orderView" EntityType="dbModel.orderView" />
+          <AssociationSet Name="FK_orderTBL_customersTBL" Association="dbModel.FK_orderTBL_customersTBL">
+            <End Role="customersTBL" EntitySet="customersTBL" />
+            <End Role="orderTBL" EntitySet="orderTBL" />
+          </AssociationSet>
+          <AssociationSet Name="FK_orderTBL_productTBL" Association="dbModel.FK_orderTBL_productTBL">
+            <End Role="productTBL" EntitySet="productTBL" />
+            <End Role="orderTBL" EntitySet="orderTBL" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="empTBL">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="firstName" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="true" />
+          <Property Name="lastName" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="true" />
+          <Property Name="fullName" Type="String" Nullable="false" MaxLength="51" FixedLength="false" Unicode="true" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="bDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="startDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="endDate" Type="DateTime" Precision="0" />
+          <Property Name="address" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="phone" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="isActive" Type="Boolean" Nullable="false" />
+          <Property Name="img" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="gender" Type="Boolean" Nullable="false" />
+          <Property Name="leaveReason" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="nots" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="roleID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="roleTBL" Relationship="dbModel.FK_empTBL_roleTBL" FromRole="empTBL" ToRole="roleTBL" />
+          <NavigationProperty Name="workHoursTBL" Relationship="dbModel.FK_orderTBL_empTABLE" FromRole="empTBL" ToRole="workHoursTBL" />
+        </EntityType>
+        <EntityType Name="empView">
+          <Key>
+            <PropertyRef Name="fullName" />
+            <PropertyRef Name="phone" />
+            <PropertyRef Name="bDate" />
+            <PropertyRef Name="startDate" />
+            <PropertyRef Name="roleName" />
+            <PropertyRef Name="isActive" />
+          </Key>
+          <Property Name="fullName" Type="String" Nullable="false" MaxLength="51" FixedLength="false" Unicode="true" />
+          <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="phone" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="bDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="startDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="roleName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="nots" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="img" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="isActive" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="roleTBL">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="roleName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="description" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="isActive" Type="Boolean" Nullable="false" />
+          <Property Name="HourSalary" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="empTBL" Relationship="dbModel.FK_empTBL_roleTBL" FromRole="roleTBL" ToRole="empTBL" />
+        </EntityType>
+        <EntityType Name="workHoursTBL">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="startDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="endDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="workerID" Type="Int32" Nullable="false" />
+          <Property Name="currentHourSalary" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="empTBL" Relationship="dbModel.FK_orderTBL_empTABLE" FromRole="workHoursTBL" ToRole="empTBL" />
+        </EntityType>
+        <Association Name="FK_empTBL_roleTBL">
+          <End Type="dbModel.roleTBL" Role="roleTBL" Multiplicity="1" />
+          <End Type="dbModel.empTBL" Role="empTBL" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="roleTBL">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="empTBL">
+              <PropertyRef Name="roleID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_orderTBL_empTABLE">
+          <End Type="dbModel.empTBL" Role="empTBL" Multiplicity="1" />
+          <End Type="dbModel.workHoursTBL" Role="workHoursTBL" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="empTBL">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="workHoursTBL">
+              <PropertyRef Name="workerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="orderTBL">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="currentOrderPrice" Type="Double" Nullable="false" />
+          <Property Name="orderDeadline" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="orderToken" Type="Int32" Nullable="false" />
+          <Property Name="isDiliverd" Type="Boolean" Nullable="false" />
+          <Property Name="productsID" Type="Int32" Nullable="false" />
+          <Property Name="customerID" Type="Int32" Nullable="false" />
+          <Property Name="orderStartDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="amount" Type="Int32" Nullable="false" />
+          <Property Name="allOrderCost" Type="Double" />
+          <Property Name="orderSendDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="customersTBL" Relationship="dbModel.FK_orderTBL_customersTBL" FromRole="orderTBL" ToRole="customersTBL" />
+          <NavigationProperty Name="productTBL" Relationship="dbModel.FK_orderTBL_productTBL" FromRole="orderTBL" ToRole="productTBL" />
+        </EntityType>
+        <EntityType Name="orderView">
+          <Key>
+            <PropertyRef Name="productName" />
+            <PropertyRef Name="productPrice" />
+            <PropertyRef Name="currentOrderPrice" />
+            <PropertyRef Name="amount" />
+            <PropertyRef Name="orderStartDate" />
+            <PropertyRef Name="orderDeadline" />
+            <PropertyRef Name="orderToken" />
+            <PropertyRef Name="productID" />
+          </Key>
+          <Property Name="fullName" Type="String" MaxLength="51" FixedLength="false" Unicode="true" />
+          <Property Name="productName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="productPrice" Type="Double" Nullable="false" />
+          <Property Name="currentOrderPrice" Type="Double" Nullable="false" />
+          <Property Name="amount" Type="Int32" Nullable="false" />
+          <Property Name="orderStartDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="orderDeadline" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="orderToken" Type="Int32" Nullable="false" />
+          <Property Name="productID" Type="Int32" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_orderTBL_customersTBL">
+          <End Type="dbModel.customersTBL" Role="customersTBL" Multiplicity="1" />
+          <End Type="dbModel.orderTBL" Role="orderTBL" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="customersTBL">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="orderTBL">
+              <PropertyRef Name="customerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_orderTBL_productTBL">
+          <End Type="dbModel.productTBL" Role="productTBL" Multiplicity="1" />
+          <End Type="dbModel.orderTBL" Role="orderTBL" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="productTBL">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="orderTBL">
+              <PropertyRef Name="productsID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="dbModelStoreContainer" CdmEntityContainer="dbEntities">
+          <EntitySetMapping Name="customersTBL">
+            <EntityTypeMapping TypeName="dbModel.customersTBL">
+              <MappingFragment StoreEntitySet="customersTBL">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="firstName" ColumnName="firstName" />
+                <ScalarProperty Name="lastName" ColumnName="lastName" />
+                <ScalarProperty Name="fullName" ColumnName="fullName" />
+                <ScalarProperty Name="address" ColumnName="address" />
+                <ScalarProperty Name="phone" ColumnName="phone" />
+                <ScalarProperty Name="mail" ColumnName="mail" />
+                <ScalarProperty Name="notes" ColumnName="notes" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="productCategoryTBL">
+            <EntityTypeMapping TypeName="dbModel.productCategoryTBL">
+              <MappingFragment StoreEntitySet="productCategoryTBL">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="categoryName" ColumnName="categoryName" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="isActive" ColumnName="isActive" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="productTBL">
+            <EntityTypeMapping TypeName="dbModel.productTBL">
+              <MappingFragment StoreEntitySet="productTBL">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="productName" ColumnName="productName" />
+                <ScalarProperty Name="nots" ColumnName="nots" />
+                <ScalarProperty Name="addDate" ColumnName="addDate" />
+                <ScalarProperty Name="isActive" ColumnName="isActive" />
+                <ScalarProperty Name="categoryID" ColumnName="categoryID" />
+                <ScalarProperty Name="img" ColumnName="img" />
+                <ScalarProperty Name="unitsInStock" ColumnName="unitsInStock" />
+                <ScalarProperty Name="productPrice" ColumnName="productPrice" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="suppliersTBL">
+            <EntityTypeMapping TypeName="dbModel.suppliersTBL">
+              <MappingFragment StoreEntitySet="suppliersTBL">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="firstName" ColumnName="firstName" />
+                <ScalarProperty Name="lastName" ColumnName="lastName" />
+                <ScalarProperty Name="fullName" ColumnName="fullName" />
+                <ScalarProperty Name="address" ColumnName="address" />
+                <ScalarProperty Name="phone" ColumnName="phone" />
+                <ScalarProperty Name="mail" ColumnName="mail" />
+                <ScalarProperty Name="notes" ColumnName="notes" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="productView">
+            <EntityTypeMapping TypeName="dbModel.productView">
+              <MappingFragment StoreEntitySet="productView">
+                <ScalarProperty Name="productName" ColumnName="productName" />
+                <ScalarProperty Name="categoryName" ColumnName="categoryName" />
+                <ScalarProperty Name="nots" ColumnName="nots" />
+                <ScalarProperty Name="productPrice" ColumnName="productPrice" />
+                <ScalarProperty Name="unitsInStock" ColumnName="unitsInStock" />
+                <ScalarProperty Name="img" ColumnName="img" />
+                <ScalarProperty Name="isActive" ColumnName="isActive" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="empTBL">
+            <EntityTypeMapping TypeName="dbModel.empTBL">
+              <MappingFragment StoreEntitySet="empTBL">
+                <ScalarProperty Name="roleID" ColumnName="roleID" />
+                <ScalarProperty Name="nots" ColumnName="nots" />
+                <ScalarProperty Name="leaveReason" ColumnName="leaveReason" />
+                <ScalarProperty Name="gender" ColumnName="gender" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="img" ColumnName="img" />
+                <ScalarProperty Name="isActive" ColumnName="isActive" />
+                <ScalarProperty Name="phone" ColumnName="phone" />
+                <ScalarProperty Name="address" ColumnName="address" />
+                <ScalarProperty Name="endDate" ColumnName="endDate" />
+                <ScalarProperty Name="startDate" ColumnName="startDate" />
+                <ScalarProperty Name="bDate" ColumnName="bDate" />
+                <ScalarProperty Name="fullName" ColumnName="fullName" />
+                <ScalarProperty Name="lastName" ColumnName="lastName" />
+                <ScalarProperty Name="firstName" ColumnName="firstName" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="empView">
+            <EntityTypeMapping TypeName="dbModel.empView">
+              <MappingFragment StoreEntitySet="empView">
+                <ScalarProperty Name="isActive" ColumnName="isActive" />
+                <ScalarProperty Name="img" ColumnName="img" />
+                <ScalarProperty Name="nots" ColumnName="nots" />
+                <ScalarProperty Name="roleName" ColumnName="roleName" />
+                <ScalarProperty Name="startDate" ColumnName="startDate" />
+                <ScalarProperty Name="bDate" ColumnName="bDate" />
+                <ScalarProperty Name="phone" ColumnName="phone" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="fullName" ColumnName="fullName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="roleTBL">
+            <EntityTypeMapping TypeName="dbModel.roleTBL">
+              <MappingFragment StoreEntitySet="roleTBL">
+                <ScalarProperty Name="HourSalary" ColumnName="HourSalary" />
+                <ScalarProperty Name="isActive" ColumnName="isActive" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="roleName" ColumnName="roleName" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="workHoursTBL">
+            <EntityTypeMapping TypeName="dbModel.workHoursTBL">
+              <MappingFragment StoreEntitySet="workHoursTBL">
+                <ScalarProperty Name="currentHourSalary" ColumnName="currentHourSalary" />
+                <ScalarProperty Name="workerID" ColumnName="workerID" />
+                <ScalarProperty Name="endDate" ColumnName="endDate" />
+                <ScalarProperty Name="startDate" ColumnName="startDate" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="orderTBL">
+            <EntityTypeMapping TypeName="dbModel.orderTBL">
+              <MappingFragment StoreEntitySet="orderTBL">
+                <ScalarProperty Name="orderSendDate" ColumnName="orderSendDate" />
+                <ScalarProperty Name="allOrderCost" ColumnName="allOrderCost" />
+                <ScalarProperty Name="amount" ColumnName="amount" />
+                <ScalarProperty Name="orderStartDate" ColumnName="orderStartDate" />
+                <ScalarProperty Name="customerID" ColumnName="customerID" />
+                <ScalarProperty Name="productsID" ColumnName="productsID" />
+                <ScalarProperty Name="isDiliverd" ColumnName="isDiliverd" />
+                <ScalarProperty Name="orderToken" ColumnName="orderToken" />
+                <ScalarProperty Name="orderDeadline" ColumnName="orderDeadline" />
+                <ScalarProperty Name="currentOrderPrice" ColumnName="currentOrderPrice" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="orderView">
+            <EntityTypeMapping TypeName="dbModel.orderView">
+              <MappingFragment StoreEntitySet="orderView">
+                <ScalarProperty Name="productID" ColumnName="productID" />
+                <ScalarProperty Name="orderToken" ColumnName="orderToken" />
+                <ScalarProperty Name="orderDeadline" ColumnName="orderDeadline" />
+                <ScalarProperty Name="orderStartDate" ColumnName="orderStartDate" />
+                <ScalarProperty Name="amount" ColumnName="amount" />
+                <ScalarProperty Name="currentOrderPrice" ColumnName="currentOrderPrice" />
+                <ScalarProperty Name="productPrice" ColumnName="productPrice" />
+                <ScalarProperty Name="productName" ColumnName="productName" />
+                <ScalarProperty Name="fullName" ColumnName="fullName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
